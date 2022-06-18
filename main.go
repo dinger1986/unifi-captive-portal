@@ -78,6 +78,8 @@ type Config struct {
 	RedirectURL string `yaml:"redirect_url"`
 	// DynamoTableName
 	DynamoTableName string `yaml:"dynamo_table_name"`
+	
+	# Add in mysql username & password and then MySQL functions
 }
 
 type Db struct {
