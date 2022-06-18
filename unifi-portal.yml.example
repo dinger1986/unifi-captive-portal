@@ -14,3 +14,5 @@ tos: |
 minutes: 600
 redirect_url: 'https://google.com'
 dynamo_table_name: 'unifi-captive-portal'
+
+#Remove dynamo and add mysql functions
