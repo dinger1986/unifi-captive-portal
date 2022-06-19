@@ -1,6 +1,7 @@
 package main
 
 # https://zetcode.com/golang/mysql/
+# https://www.courier.com/guides/golang-send-email/
 
 import (
 	"bytes"
