@@ -319,7 +319,12 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = dbSave(r.Form["email"][0], r.Form["id"][0], r.Form["ap"][0], r.Form["ssid"][0])
+//err = dbSave(r.Form["email"][0], r.Form["id"][0], r.Form["ap"][0], r.Form["ssid"][0])
+    f, err := os.OpenFile("file.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+    defer f.Close()
+    if _, err = f.WriteString(r.Form["email"][0]); err != nil {
+        log.Error(err.Error())
+    }
 	if err != nil {
 		log.Error(err.Error())
 	}
