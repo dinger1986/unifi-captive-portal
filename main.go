@@ -1,12 +1,10 @@
 package main
 
-# https://zetcode.com/golang/mysql/
-# https://www.courier.com/guides/golang-send-email/
-
 import (
 	"bytes"
 	"crypto/tls"
 	"encoding/json"
+	"encoding/csv"
 	"errors"
 	"flag"
 	"fmt"
@@ -17,9 +15,9 @@ import (
 	"net/http/cookiejar"
 	"os"
 	"time"
+	"log"
+	"io"
 
-	github.com/go-sql-driver/mysql
-	
 	log "github.com/sirupsen/logrus"
 )
 
@@ -77,10 +75,7 @@ type Config struct {
 	Minutes string `yaml:"minutes"`
 	// RedirectURL url to redirect user to if they did not have one supplied
 	RedirectURL string `yaml:"redirect_url"`
-	// DynamoTableName
-	DynamoTableName string `yaml:"dynamo_table_name"`
-	
-	# Add in mysql username & password and then MySQL functions
+
 }
 
 type Db struct {
