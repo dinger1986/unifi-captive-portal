@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"crypto/tls"
 	"encoding/json"
-	"encoding/csv"
 	"errors"
 	"flag"
 	"fmt"
@@ -15,10 +14,8 @@ import (
 	"net/http/cookiejar"
 	"os"
 	"time"
-	"log"
-	"io"
-
 	log "github.com/sirupsen/logrus"
+
 )
 
 var (
@@ -175,39 +172,6 @@ func authUser(id string, ap string) error {
 	return nil
 }
 
-func dbSave(email string, id string, ap string, ssid string) error {
-	sess := session.Must(session.NewSessionWithOptions(session.Options{
-		SharedConfigState: session.SharedConfigEnable,
-	}))
-
-	svc := dynamodb.New(sess)
-
-	item := Db{
-		Email: email,
-		ID:    id,
-		AP:    ap,
-		SSID:  ssid,
-		Date:  time.Now(),
-	}
-
-	av, err := dynamodbattribute.MarshalMap(item)
-	if err != nil {
-		return err
-	}
-
-	input := &dynamodb.PutItemInput{
-		Item:      av,
-		TableName: aws.String(config.DynamoTableName),
-	}
-
-	_, err = svc.PutItem(input)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func landingHandler(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 	if id == "" {
@@ -319,10 +283,9 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-//err = dbSave(r.Form["email"][0], r.Form["id"][0], r.Form["ap"][0], r.Form["ssid"][0])
     f, err := os.OpenFile("file.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
     defer f.Close()
-    if _, err = f.WriteString(r.Form["email"][0]); err != nil {
+    if _, err = f.WriteString(r.Form["email"][0] + "\r\n"); err != nil {
         log.Error(err.Error())
     }
 	if err != nil {
