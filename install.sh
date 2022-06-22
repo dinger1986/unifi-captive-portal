@@ -10,7 +10,7 @@ if [ ! -d "/opt/" ]; then
 fi
 cd /opt/
 
-#Download latest version of Rustdesk
+#Download latest version of Unifi Captive Portal
 git clone https://github.com/dinger1986/unifi-captive-portal.git
 sudo chown "${uname}" -R /opt/unifi-captive-portal
 env GOOS=linux GOARCH=amd64 go build -o ucp-server main.go
