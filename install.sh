@@ -11,8 +11,22 @@ fi
 cd /opt/
 
 #Download latest version of Unifi Captive Portal
+sudo apt update
+sudo apt install git -y
 git clone https://github.com/dinger1986/unifi-captive-portal.git
 sudo chown "${uname}" -R /opt/unifi-captive-portal
+
+sudo apt install wget software-properties-common apt-transport-https -y
+wget https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
+sudo tar -zxvf go1.18.3.linux-amd64.tar.gz -C /usr/local/
+echo "export PATH=/usr/local/go/bin:${PATH}" | sudo tee /etc/profile.d/go.sh
+source /etc/profile.d/go.sh
+rm -rf go1.18.3.linux-amd64.tar.gz
+cd unifi-captive-portal/
+go mod init ucp
+go get gopkg.in/yaml.v2 
+go get github.com/sirupsen/logrus
+cp unifi-portal.yml.example unifi-portal.yml
 env GOOS=linux GOARCH=amd64 go build -o ucp-server main.go
 
 # Make Folder /var/log/ucp/
