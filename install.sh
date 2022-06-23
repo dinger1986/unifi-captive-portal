@@ -5,7 +5,7 @@ uname=$(whoami)
 
 #Set ip address for UCP
 echo -ne "Enter your UCP IP Address${NC}: "
-read ip
+read ipaddr
 
 #Set username for UCP
 echo -ne "Enter your UCP Username${NC}: "
@@ -56,7 +56,7 @@ go get github.com/sirupsen/logrus
 env GOOS=linux GOARCH=amd64 go build -o ucp-server main.go
 
 config="$(cat << EOF
-unifi_url: 'https://${IP}:8443'
+unifi_url: 'https://${ipaddr}:8443'
 unifi_username: '${user}'
 unifi_password: '${password}'
 unifi_site: '${site}'
