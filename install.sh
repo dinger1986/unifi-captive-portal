@@ -53,8 +53,27 @@ cd unifi-captive-portal/
 go mod init ucp
 go get gopkg.in/yaml.v2 
 go get github.com/sirupsen/logrus
-cp unifi-portal.yml.example unifi-portal.yml
 env GOOS=linux GOARCH=amd64 go build -o ucp-server main.go
+
+config="$(cat << EOF
+unifi_url: 'https://${IP}:8443'
+unifi_username: '${user}'
+unifi_password: '${password}'
+unifi_site: '${site}'
+title: '${ucpname}'
+intro: >
+  To join our guest network, please agree to the Terms of Service below.
+tos: |
+  By accepting this agreement and accessing the wireless network, you acknowledge that you are of legal age, you have read and understood, and agree to be bound by this agreement.
+
+  (*) The wireless network service is provided by the property owners and is completely at their discretion. Your access to the network may be blocked, suspended, or terminated at any time for any reason.
+  (*) You agree not to use the wireless network for any purpose that is unlawful or otherwise prohibited and you are fully responsible for your use.
+  (*) The wireless network is provided "as is" without warranties of any kind, either expressed or implied. 
+minutes: 600
+redirect_url: '${redirurl}'
+EOF
+)"
+echo "${config}" | sudo tee /opt/unifi-cpative-portal/unifi-portal.yml > /dev/null
 
 # Make Folder /var/log/ucp/
 if [ ! -d "/var/log/ucp" ]; then
