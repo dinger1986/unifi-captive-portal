@@ -2,6 +2,7 @@
 
 A [UniFi](https://www.ubnt.com) external captive portal which captures email
 addresses and saves them to a csv file, plan will be to email automatically on a set schedule. 
+Header image will also be added and will be able to be changed.
 
 ## Running
 
@@ -24,7 +25,8 @@ must run on port 80.
 
 Built and tested on Ubuntu 20.04 and Debian 11
 
-```wget https://raw.githubusercontent.com/dinger1986/unifi-captive-portal/master/install.sh
+```
+wget https://raw.githubusercontent.com/dinger1986/unifi-captive-portal/master/install.sh
 chmod +x install.sh
 ./install.sh
 ```
