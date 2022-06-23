@@ -16,12 +16,15 @@ sudo apt install git -y
 git clone https://github.com/dinger1986/unifi-captive-portal.git
 sudo chown "${uname}" -R /opt/unifi-captive-portal
 
+#Download and install latest version of Golang
 sudo apt install wget software-properties-common apt-transport-https -y
 wget https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
 sudo tar -zxvf go1.18.3.linux-amd64.tar.gz -C /usr/local/
 echo "export PATH=/usr/local/go/bin:${PATH}" | sudo tee /etc/profile.d/go.sh
 source /etc/profile.d/go.sh
 rm -rf go1.18.3.linux-amd64.tar.gz
+
+#Compile UCP
 cd unifi-captive-portal/
 go mod init ucp
 go get gopkg.in/yaml.v2 
