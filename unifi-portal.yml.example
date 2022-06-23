@@ -1,8 +1,8 @@
-unifi_url: 'https://127.0.0.1:8443'
-unifi_username: 'user'
-unifi_password: 'password'
+unifi_url: 'https://${IP}:8443'
+unifi_username: '${user}'
+unifi_password: '${password}'
 unifi_site: 'default'
-title: 'UniFi Captive Portal'
+title: '${ucpname}'
 intro: >
   To join our guest network, please agree to the Terms of Service below.
 tos: |
@@ -12,4 +12,4 @@ tos: |
   (*) You agree not to use the wireless network for any purpose that is unlawful or otherwise prohibited and you are fully responsible for your use.
   (*) The wireless network is provided "as is" without warranties of any kind, either expressed or implied. 
 minutes: 600
-redirect_url: 'https://google.com'
+redirect_url: '${redirurl}'
