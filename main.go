@@ -283,7 +283,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-    f, err := os.OpenFile("ucpemails.csv", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+    f, err := os.OpenFile("reporting/ucpemails.csv", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
     defer f.Close()
     if _, err = f.WriteString(r.Form["email"][0] + "\r\n"); err != nil {
         log.Error(err.Error())
