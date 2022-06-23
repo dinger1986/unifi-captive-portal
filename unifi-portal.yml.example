@@ -13,6 +13,3 @@ tos: |
   (*) The wireless network is provided "as is" without warranties of any kind, either expressed or implied. 
 minutes: 600
 redirect_url: 'https://google.com'
-dynamo_table_name: 'unifi-captive-portal'
-
-#Remove dynamo and add mysql functions
