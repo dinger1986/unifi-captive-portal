@@ -3,6 +3,30 @@
 # Get Username
 uname=$(whoami)
 
+#Set ip address for UCP
+echo -ne "Enter your UCP IP Address${NC}: "
+read ip
+
+#Set username for UCP
+echo -ne "Enter your UCP Username${NC}: "
+read user
+
+#Set password for UCP
+echo -ne "Enter your UCP Password${NC}: "
+read password
+
+#Set Site for UCP
+echo -ne "Enter your UCP Site (if you only have one its most likely default)${NC}: "
+read site
+
+#Set Name for Portal
+echo -ne "Enter your preferred name for the UCP Portal${NC}: "
+read ucpname
+
+#Set redirect URL
+echo -ne "Enter your preferred URL for users to go to once connected${NC}: "
+read redirurl
+
 # Make Folder /opt/
 if [ ! -d "/opt/" ]; then
     echo "Creating /opt/"
