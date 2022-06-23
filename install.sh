@@ -73,7 +73,7 @@ minutes: 600
 redirect_url: '${redirurl}'
 EOF
 )"
-echo "${config}" | sudo tee /opt/unifi-cpative-portal/unifi-portal.yml > /dev/null
+echo "${config}" | sudo tee /opt/unifi-captive-portal/unifi-portal.yml > /dev/null
 
 # Make Folder /var/log/ucp/
 if [ ! -d "/var/log/ucp" ]; then
