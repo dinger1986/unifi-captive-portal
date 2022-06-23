@@ -107,7 +107,29 @@ sudo systemctl daemon-reload
 sudo systemctl enable ucp.service
 sudo systemctl start ucp.service
 
-#Get WAN IP
-wanip=$(dig @resolver4.opendns.com myip.opendns.com +short)
+#Install nginx
+sudo apt install -y nginx
 
-echo -e "Your IP is ${wanip}"
+nginx="$(cat << EOF
+server {
+    listen 80;
+    listen [::]:80;
+    access_log /var/log/ucp/webaccess.log;
+    error_log /var/log/ucp/weberror.log;
+    location / {
+        proxy_pass http://localhost:4646;
+    }
+
+}
+EOF
+)"
+echo "${nginx}" | sudo tee /etc/nginx/sites-available/ucp.conf > /dev/null
+
+sudo ln -s /etc/nginx/sites-available/ucp.conf /etc/nginx/sites-enabled/ucp.conf
+
+sudo rm /etc/nginx/sites-available/default
+sudo rm /etc/nginx/sites-enabled/default
+
+sudo systemctl restart nginx
+
+echo -e "Unifi Captive Portal is now installed."
