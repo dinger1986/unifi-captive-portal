@@ -18,44 +18,13 @@ file. You will need to specify its location along with the assets and
 templates directories.
 
 Also, due to a limitation in the UniFi controller software, external portals
-must run on port 80. I recommend running a reverse proxy (such as NGINX) in front
-of this application instead of running it with elevated privileges.
+must run on port 80. 
 
+## Installation
+
+Built and tested on Ubuntu 20.04 and Debian 11
+
+```wget https://raw.githubusercontent.com/dinger1986/unifi-captive-portal/master/install.sh
+chmod +x install.sh
+./install.sh
 ```
-unifi-captive-portal:
-  -asset.dir string
-    	Directory which contains css/js/img assets. (default "assets")
-  -config.file string
-    	Unifi captive portal configuration file. (default "unifi-portal.yml")
-  -template.dir string
-    	Directory which contains HTML templates. (default "templates")
-  -verbose
-    	Enable verbose/debug logging.
-  -version
-    	Print version/build information.
-  -web.listen-address string
-    	Address to listen on for requests. (default ":4646")
-```
-
-## Configuration
-
-Config Key | Value
----------- | -----
-unifi_url | Full URL of your UniFi Controller. Be sure to include the port it is running on (8443 is the default)
-unifi_username | Username of the user to make API calls with. It is recommended to use a dedicated user
-unifi_password | Password for user defined above
-unifi_site | The name of the site the APs/Users reside in. Usually this is default
-title | Title used in HTML pages as well as headings. Usually you will put your company name here
-intro | Paragraph of text below the page title and above the form requesting a user for their email. You may wish to offer a brief explanation of why you are collecting their email address.
-tos | Terms of Service. I am not a lawyer, the sample TOS provided is in no way legally binding nor implied valid. Please consult legal advice for what to put here.
-minutes | Amount of time to register user for
-redirect_url | URL to redirect users to if they do not provide one to the controller
-
-
-## Building
-
-Pre built binaries are provided on Github, but if you prefer to manually compile,
-there is a Make file provided. The version variable is not required but highly
-recommended.
-
-    $ VERSION="version" make
