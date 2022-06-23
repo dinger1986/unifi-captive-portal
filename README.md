@@ -1,7 +1,7 @@
 # UniFi Captive Portal
 
 A [UniFi](https://www.ubnt.com) external captive portal which captures email
-addresses and saves them to a [DynamoDB](https://aws.amazon.com/dynamodb/) table.
+addresses and saves them to a csv file, plan will be to email automatically on a set schedule. 
 
 ## Running
 
@@ -12,11 +12,6 @@ Templates holds the various HTML templates.
 If you would like to add custom elements (such as a header image) feel free.
 The CSS library used is [Semantic UI](https://semantic-ui.com) so refer to their
 documentation if you would like to modify the look.
-
-You must have the DynamoDB table already created and have setup a shared
-credentials file per the [SDK docs](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials).
-Please use an IAM role with the least privileges required (read/write access to
-the DynamoDB table you created). **DO NOT USE YOUR ROOT ACCOUNT**.
 
 See the configuration section below for more information regarding the config
 file. You will need to specify its location along with the assets and
@@ -55,7 +50,6 @@ intro | Paragraph of text below the page title and above the form requesting a u
 tos | Terms of Service. I am not a lawyer, the sample TOS provided is in no way legally binding nor implied valid. Please consult legal advice for what to put here.
 minutes | Amount of time to register user for
 redirect_url | URL to redirect users to if they do not provide one to the controller
-dynamo_table_name | Name of your DynamoDB table to store the collected email addresses
 
 
 ## Building
