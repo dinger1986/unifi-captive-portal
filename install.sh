@@ -110,11 +110,4 @@ sudo systemctl start ucp.service
 #Get WAN IP
 wanip=$(dig @resolver4.opendns.com myip.opendns.com +short)
 
-pubname=$(find /opt/rustdesk -name *.pub)
-key=$(cat "${pubname}")
-
-sudo rm "${TMPFILE}"
-
-
 echo -e "Your IP is ${wanip}"
-echo -e "Install Rustdesk on your machines and change your public key and IP/DNS name to the above"
