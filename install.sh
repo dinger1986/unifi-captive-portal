@@ -70,7 +70,7 @@ tos: |
   (*) You agree not to use the wireless network for any purpose that is unlawful or otherwise prohibited and you are fully responsible for your use.
   (*) The wireless network is provided "as is" without warranties of any kind, either expressed or implied. 
 minutes: 600
-redirect_url: '${redirurl}'
+redirect_url: 'http://${redirurl}'
 EOF
 )"
 echo "${config}" | sudo tee /opt/unifi-captive-portal/unifi-portal.yml > /dev/null
